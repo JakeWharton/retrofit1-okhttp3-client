@@ -11,7 +11,7 @@
 
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit1-okhttp3-client</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
 
   <name>Retrofit 1 OkHttp 3 Client</name>
   <description>A OkHttp 3 client implementation for Retrofit 1.</description>
