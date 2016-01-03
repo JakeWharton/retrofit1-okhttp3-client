@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import okhttp3.Call;
 import okhttp3.Headers;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -18,13 +19,20 @@ import retrofit.mime.TypedInput;
 import retrofit.mime.TypedOutput;
 
 public final class Ok3Client implements Client {
-  private final OkHttpClient client;
+  private final Call.Factory client;
 
   public Ok3Client() {
     this(new OkHttpClient());
   }
 
   public Ok3Client(OkHttpClient client) {
+    this((Call.Factory) client);
+  }
+
+  public Ok3Client(Call.Factory client) {
+    if (client == null) {
+      throw new NullPointerException("client == null");
+    }
     this.client = client;
   }
 

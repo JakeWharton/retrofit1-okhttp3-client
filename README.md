@@ -8,7 +8,8 @@ A OkHttp 3 client implementation for Retrofit 1.
 Usage
 -----
 
-Create an instance wrapping your `OkHttpClient` and pass to `setClient`.
+Create an instance of `Ok3Client` wrapping your `OkHttpClient` or `Call.Factory` and pass it to
+`setClient`.
 
 ```java
 OkHttpClient client = // ...
@@ -27,14 +28,14 @@ Download
 
 Gradle:
 ```groovy
-compile 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.0.0'
+compile 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.0.1'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit1-okhttp3-client</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
 </dependency>
 ```
 
