@@ -13,7 +13,7 @@ Create an instance of `Ok3Client` wrapping your `OkHttpClient` or `Call.Factory`
 
 ```java
 OkHttpClient client = // ...
-RestAdpater restAdapter = new RestAdapter.Builder()
+RestAdapter restAdapter = new RestAdapter.Builder()
     .setClient(new Ok3Client(client))
     .setEndpoint(..)
     .build()
