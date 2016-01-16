@@ -28,14 +28,14 @@ Download
 
 Gradle:
 ```groovy
-compile 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.0.1'
+compile 'com.jakewharton.retrofit:retrofit1-okhttp3-client:1.0.2'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>com.jakewharton.retrofit</groupId>
   <artifactId>retrofit1-okhttp3-client</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 </dependency>
 ```
 
