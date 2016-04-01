@@ -26,6 +26,7 @@ public final class Ok3ClientIntegrationTest {
   private interface Service {
     @GET("/") Response get();
     @POST("/") Response post(@Body TypedInput body);
+    @POST("/") Response post();
   }
 
   @Before public void setUp() {
@@ -71,5 +72,22 @@ public final class Ok3ClientIntegrationTest {
     assertThat(request.getMethod()).isEqualTo("POST");
     assertThat(request.getPath()).isEqualTo("/");
     assertThat(request.getBody().readUtf8()).isEqualTo("Hello?");
+  }
+
+  @Test public void emptyBody() throws IOException, InterruptedException {
+    server.enqueue(new MockResponse()
+                       .addHeader("Hello", "World")
+                       .setBody("Hello!"));
+
+    Response response = service.post();
+    assertThat(response.getReason()).isEqualTo("OK");
+    assertThat(response.getUrl()).isEqualTo(server.url("/").toString());
+    assertThat(response.getHeaders()).contains(new Header("Hello", "World"));
+    assertThat(buffer(source(response.getBody().in())).readUtf8()).isEqualTo("Hello!");
+
+    RecordedRequest request = server.takeRequest();
+    assertThat(request.getMethod()).isEqualTo("POST");
+    assertThat(request.getPath()).isEqualTo("/");
+    assertThat(request.getBody().readUtf8()).isEqualTo("");
   }
 }

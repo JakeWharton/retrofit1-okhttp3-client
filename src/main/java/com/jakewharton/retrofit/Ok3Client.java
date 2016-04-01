@@ -20,6 +20,7 @@ import retrofit.mime.TypedOutput;
 
 public final class Ok3Client implements Client {
   private final Call.Factory client;
+  private static final byte[] NO_BODY = new byte[0];
 
   public Ok3Client() {
     this(new OkHttpClient());
@@ -41,9 +42,16 @@ public final class Ok3Client implements Client {
   }
 
   static okhttp3.Request createRequest(Request request) {
+    RequestBody requestBody;
+    if (requiresRequestBody(request.getMethod()) && request.getBody() == null) {
+      requestBody = RequestBody.create(null, NO_BODY);
+    } else {
+      requestBody = createRequestBody(request.getBody());
+    }
+
     okhttp3.Request.Builder builder = new okhttp3.Request.Builder()
         .url(request.getUrl())
-        .method(request.getMethod(), createRequestBody(request.getBody()));
+        .method(request.getMethod(), requestBody);
 
     List<Header> headers = request.getHeaders();
     for (int i = 0, size = headers.size(); i < size; i++) {
@@ -110,5 +118,13 @@ public final class Ok3Client implements Client {
       headerList.add(new Header(headers.name(i), headers.value(i)));
     }
     return headerList;
+  }
+
+  private static boolean requiresRequestBody(String method) {
+    return "POST".equals(method)
+           || "PUT".equals(method)
+           || "PATCH".equals(method)
+           || "PROPPATCH".equals(method)
+           || "REPORT".equals(method);
   }
 }
