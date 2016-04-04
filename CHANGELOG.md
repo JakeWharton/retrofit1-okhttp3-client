@@ -1,6 +1,13 @@
 Change Log
 ==========
 
+Version 1.1.0 *(2016-04-04)*
+----------------------------
+
+ * New: Coerce `null` request bodies from Retrofit to empty bodies for OkHttp.
+ * Update to OkHttp 3.2.0.
+
+
 Version 1.0.2 *(2016-01-15)*
 ----------------------------
 
